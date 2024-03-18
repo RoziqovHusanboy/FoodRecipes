@@ -3,9 +3,7 @@
     <style name="Base.Theme.FoodRecipes" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimary">@color/yellow</item>
-        <item name="colorPrimaryDark">@color/white</item>
-        <item name="colorAccent">@color/brown</item>
+
     </style>
 
     <style name="Theme.FoodRecipes" parent="Base.Theme.FoodRecipes" />

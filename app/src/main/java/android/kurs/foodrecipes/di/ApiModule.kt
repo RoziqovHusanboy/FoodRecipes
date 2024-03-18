@@ -15,5 +15,4 @@ object ApiModule {
     @Provides
     @Singleton
     fun provideCategoryApi(retrofit: Retrofit) = retrofit.create(CategoryApi::class.java)
-
 }

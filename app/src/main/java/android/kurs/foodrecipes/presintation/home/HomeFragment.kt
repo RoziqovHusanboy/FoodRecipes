@@ -1,5 +1,6 @@
 package android.kurs.foodrecipes.presintation.home
 
+import android.kurs.foodrecipes.MainDirections
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,13 +11,21 @@ import android.kurs.foodrecipes.databinding.FragmentHomeBinding
 import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding:FragmentHomeBinding
     private val viewModel by viewModels<HomeViewModel>()
+    private lateinit var mAuth: FirebaseAuth
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mAuth = FirebaseAuth.getInstance()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +40,15 @@ class HomeFragment : Fragment() {
         UI()
 
     }
+
+//    override fun onStart() {
+//        super.onStart()
+//        val user: FirebaseUser? =mAuth.currentUser
+//        if (user==null){
+//            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLogInFragment())
+//        }
+//    }
+
 
     private fun UI() {
 

@@ -53,7 +53,7 @@ class RegisterFragment : Fragment() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
                     Toast.makeText(requireContext(), "Authentication succeeded", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(RegisterFragmentDirections.toSplashScreen())
+//                    findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment())
                 }
 
                 override fun onAuthenticationFailed() {
