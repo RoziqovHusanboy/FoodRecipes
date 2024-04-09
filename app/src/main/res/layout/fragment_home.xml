@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presintation.home.HomeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/menu"
@@ -95,10 +104,10 @@
 
     <HorizontalScrollView
         android:id="@+id/horizontalScroll"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:scrollbars="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,9 +131,9 @@
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:background="@drawable/background_categories"
+                    android:padding="2dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/image_saladd"
-                    android:padding="2dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -151,8 +160,8 @@
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:background="@drawable/background_categories"
-                    android:src="@drawable/image_drink"
                     android:padding="7dp"
+                    android:src="@drawable/image_drink"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -179,9 +188,9 @@
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:background="@drawable/background_categories"
+                    android:padding="12dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/image_drinkas"
-                    android:padding="12dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -209,9 +218,9 @@
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:background="@drawable/background_categories"
+                    android:padding="9dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/dessert"
-                    android:padding="9dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -230,6 +239,8 @@
 
     </HorizontalScrollView>
 
+
+
     <TextView
         android:id="@+id/recipeText"
         android:layout_width="wrap_content"
@@ -243,37 +254,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horizontalScroll" />
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:layout_width="match_parent"-->
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/recipeText"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:id="@+id/showAll"-->
+<!--        style="@style/Widget.MaterialComponents.Button.TextButton"-->
+<!--        app:layout_constraintTop_toTopOf="@id/recipeText"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginHorizontal="16dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:id="@+id/recyclerPopular"-->
-<!--        tools:listitem="@layout/popular_recycler_item"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--        android:orientation="horizontal" />-->
-    <TextView
+<!--        android:layout_marginEnd="32dp"-->
+<!--        android:text="showAll"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@color/yellow"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/recipeText"-->
+<!--        android:textSize="14sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:drawableEnd="@drawable/ic_right"-->
+<!--        />-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPopular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/log"
-        app:layout_constraintTop_toBottomOf="@id/recipeText"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipeText"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/popular_recycler_item"
+        android:padding="10dp"
         />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/log"
-        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="14sp"
-        android:id="@+id/error"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-        />
-
+    <include
+        layout="@layout/item_error"
+        android:id="@+id/error"/>
+    <include
+        layout="@layout/item_loading"
+        android:id="@+id/loading"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

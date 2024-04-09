@@ -1,4 +1,4 @@
-package android.kurs.foodrecipes.data.model
+package android.kurs.foodrecipes.data.model.category
 
 
 import com.google.gson.annotations.SerializedName

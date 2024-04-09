@@ -11,7 +11,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ForgotFragment:Fragment() {
     private lateinit var binding:FragmentLoginResetBinding
     private lateinit var mAuth:FirebaseAuth

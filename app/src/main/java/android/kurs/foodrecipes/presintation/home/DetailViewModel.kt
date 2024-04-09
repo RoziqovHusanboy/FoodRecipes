@@ -10,36 +10,31 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val categoryRepository: CategoryRepository
+class DetailViewModel @Inject constructor(
+    private val repository: CategoryRepository
 ) : ViewModel() {
-
-    private var category = MutableLiveData<Category>()
-    val _category get() = category
     val loading = MutableLiveData(false)
     val error = MutableLiveData(false)
-    val _error = MutableLiveData<Exception>()
-
+    private val category = MutableLiveData<Category>()
+    val _category get() = category
     init {
+
     getCategory()
+
     }
+
 
     fun getCategory() = viewModelScope.launch {
         loading.postValue(true)
         error.postValue(false)
         try {
-            val category = categoryRepository.getCategory()
-            this@HomeViewModel.category.postValue(category)
-
+            val responseList = repository.getCategory()
+            category.postValue(responseList)
         } catch (e: Exception) {
             error.postValue(true)
-            _error.postValue(e)
         } finally {
-            loading.postValue(false)
+            loading.postValue(true)
         }
 
-
     }
-
-
 }
