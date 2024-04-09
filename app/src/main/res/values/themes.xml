@@ -3,8 +3,14 @@
     <style name="Base.Theme.FoodRecipes" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-
+        <item name="android:statusBarColor">#C7D1F9</item>
+        <item name="android:navigationBarColor">#C7D1F9</item>
     </style>
 
     <style name="Theme.FoodRecipes" parent="Base.Theme.FoodRecipes" />
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/background_item_color</item>
+    </style>
+
+
 </resources>

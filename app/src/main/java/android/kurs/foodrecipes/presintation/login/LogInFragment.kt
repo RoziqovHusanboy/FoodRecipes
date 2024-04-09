@@ -22,17 +22,24 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.Executor
 
 @AndroidEntryPoint
-class LogInFragment:Fragment() {
+class LogInFragment : Fragment() {
     private lateinit var binding: FragmentLoginInBinding
     private lateinit var mAuth: FirebaseAuth
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
+    private val biometricPromptInfo = BiometricPrompt.PromptInfo.Builder()
+        .setTitle("Используйте биометрический сканер для входа")
+         .setNegativeButtonText("ОТМЕНА")
+        .build()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
+
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,14 +57,31 @@ class LogInFragment:Fragment() {
             loginUser()
         }
         binding.createAccount.setOnClickListener {
-            findNavController().navigate( LogInFragmentDirections.actionLogInFragmentToSignUpFragment())
+            findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToSignUpFragment())
         }
-        val user:FirebaseUser? = mAuth.currentUser
+        val user: FirebaseUser? = mAuth.currentUser
         user.let {
             binding.imgFinger.isVisible = it != null
         }
 
-        loginWithFinger()
+        if (checkBiometricSupport()) {
+            biometricPrompt = BiometricPrompt(
+                this,
+                ContextCompat.getMainExecutor(requireContext()),
+                authenticationCallback
+            )
+            biometricPrompt.authenticate(biometricPromptInfo)
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Biometric authentication is not available",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        binding.imgFinger.setOnClickListener {
+            biometricPrompt.authenticate(biometricPromptInfo)
+        }
 
         binding.forgotTextview.setOnClickListener {
             findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToForgotFragment())
@@ -75,8 +99,8 @@ class LogInFragment:Fragment() {
         } else if (TextUtils.isEmpty(password)) {
             binding.passwordEditText.setError("Password cannot be empty")
             binding.passwordEditText.requestFocus()
-        }else{
-            mAuth.signInWithEmailAndPassword(email,password)
+        } else {
+            mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         Toast.makeText(
@@ -86,74 +110,36 @@ class LogInFragment:Fragment() {
                         )
                             .show()
                         findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToHomeFragment2())
-                    }else{
+                    } else {
                         Toast.makeText(requireContext(), "sign in failed", Toast.LENGTH_SHORT)
                             .show()
+                    }
                 }
-            }
-        }
-    }
-    fun loginWithFinger(){
-        executor = ContextCompat.getMainExecutor(requireContext())
-        biometricPrompt = BiometricPrompt(requireActivity(),executor,
-            @SuppressLint("NewApi")
-            object:BiometricPrompt.AuthenticationCallback(){
-
-                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                    super.onAuthenticationError(errorCode, errString)
-                    Toast.makeText(requireContext(), "Authentication error: $errString", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                    super.onAuthenticationSucceeded(result)
-                    Toast.makeText(requireContext(), "Authentication succeeded", Toast.LENGTH_SHORT).show()
-                 findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToHomeFragment2())
-                }
-
-                override fun onAuthenticationFailed() {
-                    super.onAuthenticationFailed()
-                    Toast.makeText(requireContext(), "Authentication failed", Toast.LENGTH_SHORT).show()
-                }
-            })
-
-        promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Sample Title")
-            .setSubtitle("Sample Subtitle")
-            .setNegativeButtonText("sample setNegativeButtonText")
-            .build()
-
-        binding.imgFinger.setOnClickListener {
-            biometricPrompt.authenticate(promptInfo)
         }
     }
 
-//    @SuppressLint("WrongConstant")
-//    private fun checkDeviceHasBiometric() {
-//        val biometricManager = androidx.biometric.BiometricManager.from(requireContext())
-//        when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
-//            BiometricManager.BIOMETRIC_SUCCESS -> {
-//                binding.textFinger.text = "App can authenticate using biometric"
-//                binding.loginBTN.isEnabled = true
-//            }
-//
-//            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> {
-//                binding.textFinger.text = "Biometric features are currently unavailable"
-//                binding.loginBTN.isEnabled = false
-//            }
-//
-//            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
-//                val enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
-//                    putExtra(
-//                        Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
-//                        BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL
-//                    )
-//                }
-//                binding.loginBTN.isEnabled = false
-//                startActivityForResult(enrollIntent,100)
-//            }
-//
-//
-//        }
-//
-//    }
+    private fun checkBiometricSupport(): Boolean {
+        val biometricManager = androidx.biometric.BiometricManager.from(requireContext())
+        return biometricManager.canAuthenticate() == androidx.biometric.BiometricManager.BIOMETRIC_SUCCESS
+    }
+
+    private val authenticationCallback = object : BiometricPrompt.AuthenticationCallback() {
+        override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+            super.onAuthenticationError(errorCode, errString)
+            Toast.makeText(requireContext(), "Authentication error: $errString", Toast.LENGTH_SHORT)
+                .show()
+        }
+
+        override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+            super.onAuthenticationSucceeded(result)
+            Toast.makeText(requireContext(), "Authentication succeeded", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToHomeFragment2())
+        }
+
+        override fun onAuthenticationFailed() {
+            super.onAuthenticationFailed()
+            Toast.makeText(requireContext(), "Authentication failed", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
