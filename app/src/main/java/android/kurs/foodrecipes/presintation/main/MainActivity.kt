@@ -40,7 +40,9 @@ class MainActivity : AppCompatActivity() {
                         R.id.signUpFragment,
                         R.id.forgotFragment,
                         R.id.detailFragment,
-                        R.id.searchFragment
+                        R.id.searchFragment,
+                        R.id.profileFragment,
+                        R.id.splashScreenFragment
                     ).all {
                         it != destination.id
                     }

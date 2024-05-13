@@ -37,6 +37,9 @@ class HomeFragment : Fragment() {
         binding.search.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
         }
+        binding.menu.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment())
+        }
         SubscribeToLiveData()
     }
 

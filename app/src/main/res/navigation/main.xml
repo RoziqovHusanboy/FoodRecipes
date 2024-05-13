@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    app:startDestination="@id/logInFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -12,14 +12,14 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_logInFragment"
-            app:destination="@id/logInFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
 
     </fragment>
     <fragment
@@ -30,7 +30,9 @@
         >
         <action
             android:id="@+id/action_logInFragment_to_homeFragment2"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/logInFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_logInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -73,7 +75,9 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="android.kurs.foodrecipes.presintation.search.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search"
+        />
     <fragment
         android:id="@+id/mapFragment"
         android:name="android.kurs.foodrecipes.presintation.map.MapFragment"
@@ -85,7 +89,27 @@
         android:name="android.kurs.foodrecipes.presintation.setting.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting"
+        >
+        <action
+            android:id="@+id/action_settingFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="android.kurs.foodrecipes.presintation.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"
         />
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="android.kurs.foodrecipes.presintation.splash.SplashScreenFragment"
+        android:label="SplashScreenFragment"
+        tools:layout="@layout/fragment_splash_screen"
+        >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
 
 
 </navigation>

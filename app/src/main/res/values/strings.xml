@@ -4,4 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_fragment_desc">Which tajik food would you like to cook?</string>
+    <string name="dialog_bottom_title">Сменить %s ?</string>
+    <string name="item_bottom_sheet_text_distance">%s km</string>
+    <string name="item_bottom_sheet_desc">нохияи Б.Гафуров, чамоти Гозиён, дехаи Котма, рохи мошингарди Конибодом-Ч.Рас</string>
 </resources>

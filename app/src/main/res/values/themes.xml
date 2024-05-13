@@ -9,7 +9,7 @@
 
     <style name="Theme.FoodRecipes" parent="Base.Theme.FoodRecipes" />
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/background_item_color</item>
+        <item name="android:color">@color/white</item>
     </style>
 
 

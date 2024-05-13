@@ -72,6 +72,7 @@ class LogInFragment : Fragment() {
             )
             biometricPrompt.authenticate(biometricPromptInfo)
         } else {
+            binding.imgFinger.isVisible = false
             Toast.makeText(
                 requireContext(),
                 "Biometric authentication is not available",
