@@ -1,6 +1,6 @@
 package android.kurs.foodrecipes.presintation.home
 
-import android.kurs.foodrecipes.data.model.Category
+import android.kurs.foodrecipes.data.model.category.Category
 import android.kurs.foodrecipes.domain.repo.CategoryRepository
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -1,6 +1,6 @@
 package android.kurs.foodrecipes.di
 
-import android.kurs.foodrecipes.data.api.categories.CategoryApi
+import android.kurs.foodrecipes.data.api.categories.Api
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,5 +14,5 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideCategoryApi(retrofit: Retrofit) = retrofit.create(CategoryApi::class.java)
+    fun provideCategoryApi(retrofit: Retrofit) = retrofit.create(Api::class.java)
 }

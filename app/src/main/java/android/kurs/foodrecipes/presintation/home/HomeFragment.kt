@@ -1,19 +1,17 @@
 package android.kurs.foodrecipes.presintation.home
 
-import android.kurs.foodrecipes.MainDirections
+import android.kurs.foodrecipes.data.model.category.CategoryX
+import android.kurs.foodrecipes.databinding.FragmentHomeBinding
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.kurs.foodrecipes.R
-import android.kurs.foodrecipes.databinding.FragmentHomeBinding
-import android.util.Log
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,42 +34,38 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        SubscribeToLiveData()
-        UI()
-
-    }
-
-//    override fun onStart() {
-//        super.onStart()
-//        val user: FirebaseUser? =mAuth.currentUser
-//        if (user==null){
-//            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLogInFragment())
-//        }
-//    }
-
-
-    private fun UI() {
-
-    }
-    private fun SubscribeToLiveData() {
-
-//        viewModel.error.observe(viewLifecycleOwner){
-//            binding.error.isVisible = it
-//        }
-
-        viewModel._error.observe(viewLifecycleOwner){
-            binding.error.text = it.toString()
+        binding.search.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
         }
+        binding.menu.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment())
+        }
+        SubscribeToLiveData()
+    }
 
 
-
-        viewModel._category.observe(viewLifecycleOwner){
-            Log.d("TAG", "SubscribeToLiveData:$it ")
-            it.categories.forEach {
-                binding.log.text =   it.idCategory
+    private fun SubscribeToLiveData() {
+        viewModel.error.observe(viewLifecycleOwner){
+            binding.error.root.isVisible = it
+            binding.error.errorBtn.setOnClickListener {
+                viewModel.getCategory()
             }
         }
 
+        viewModel.loading.observe(viewLifecycleOwner){
+            binding.loading.root.isVisible = it
+        }
+
+        viewModel._category.observe(viewLifecycleOwner){category->
+            binding.recyclerPopular.layoutManager =LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+            binding.recyclerPopular.adapter =   PopularItemAdapter(category.categories,this::onClick)
+        }
     }
+
+    private fun onClick(categoryX: CategoryX){
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(categoryX.idCategory.toInt()))
+    }
+
+
 
 }

@@ -72,7 +72,7 @@
                 app:layout_constraintTop_toBottomOf="@id/loginText" />
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/cancel"
                 android:layout_width="125dp"
                 android:layout_height="40dp"
@@ -83,7 +83,7 @@
                 app:layout_constraintTop_toBottomOf="@id/email_edit_text" />
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/reset"
                 android:layout_width="125dp"
                 android:layout_height="40dp"
