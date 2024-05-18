@@ -6,5 +6,10 @@
     <color name="brown">#433232</color>
     <color name="color_foodie">#014E26</color>
     <color name="background_item_color">#1B4668</color>
+    <color name="red">#FF1302</color>
+    <color name="button_back">#F5F5F5</color>
+    <color name="green">#23325C</color>
+    <color name="indicator_uncheked">#BFC9DA</color>
+    <color name="indicator_cheked">#09EA75</color>
 
 </resources>

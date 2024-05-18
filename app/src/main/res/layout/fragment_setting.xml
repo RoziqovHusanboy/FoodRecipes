@@ -34,7 +34,6 @@
         android:drawableLeft="@drawable/fragment_more_ic_share"
         android:paddingStart="10dp"
         android:text="Поделиться"
-
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="#23325C"

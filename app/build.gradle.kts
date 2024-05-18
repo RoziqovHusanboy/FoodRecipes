@@ -104,6 +104,9 @@ dependencies {
     //viewPager 2
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
 
+    implementation ("com.github.zhpanvip:viewpagerindicator:1.2.1")
+
+
     //swipe refresh
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     //material

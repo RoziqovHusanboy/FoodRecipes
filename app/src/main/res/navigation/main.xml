@@ -110,6 +110,12 @@
             android:id="@+id/action_splashScreenFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addFoodFragment"
+        android:name="android.kurs.foodrecipes.presintation.add_food.AddFoodFragment"
+        android:label="AddFoodFragment"
+        tools:layout="@layout/fragment_add_food"
+        />
 
 
 </navigation>

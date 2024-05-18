@@ -2,8 +2,10 @@ package android.kurs.foodrecipes.di
 
 import android.kurs.foodrecipes.data.repo.CategoryRepoImpl
 import android.kurs.foodrecipes.data.repo.FilterAreaRepositoryImpl
+import android.kurs.foodrecipes.data.repo.HomeRepoImpl
 import android.kurs.foodrecipes.domain.repo.CategoryRepository
 import android.kurs.foodrecipes.domain.repo.FilterAreaRepository
+import android.kurs.foodrecipes.domain.repo.HomeRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -23,4 +25,9 @@ abstract class RepositoryModule {
     abstract fun  bindFilterAreaRepo(
         filterAreaRepositoryImpl: FilterAreaRepositoryImpl
     ) : FilterAreaRepository
+
+    @Binds
+    abstract fun  bindHomeRepository(
+        homeRepoImpl: HomeRepoImpl
+    ) : HomeRepository
 }
