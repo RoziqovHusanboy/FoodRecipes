@@ -99,7 +99,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 val smallMarker = Bitmap.createScaledBitmap(b, width, height, false)
                 marker?.setIcon(BitmapDescriptorFactory.fromBitmap(smallMarker))
 
-                val moveCamera = CameraUpdateFactory.newLatLngZoom(latLng, 12f)
+                val moveCamera = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
                 myMap.animateCamera(moveCamera)
 
             }

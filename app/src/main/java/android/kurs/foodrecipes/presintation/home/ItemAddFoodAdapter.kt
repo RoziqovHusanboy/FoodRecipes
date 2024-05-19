@@ -1,10 +1,8 @@
 package android.kurs.foodrecipes.presintation.home
 
-import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
-import android.kurs.foodrecipes.data.model.home.get_home.Banner
-import android.kurs.foodrecipes.data.model.home.get_home.ResponseHome
-import android.kurs.foodrecipes.databinding.ItemBannerBinding
+import android.kurs.foodrecipes.data.local.model.FoodAddModel
+import android.kurs.foodrecipes.databinding.ItemAddingFoodRcBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -15,23 +13,22 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
-class BannerAdapter(
-    private val banners: ResponseHome
-) : RecyclerView.Adapter<BannerAdapter.ViewHolder>() {
-    inner class ViewHolder(private val binding: ItemBannerBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(banner: Banner) = with(binding) {
-            Glide.with(root).load(banner.image).listener(object :RequestListener<Drawable>{
-                @SuppressLint("SuspiciousIndentation")
+class ItemAddFoodAdapter(
+    val list :List<FoodAddModel?>
+):RecyclerView.Adapter<ItemAddFoodAdapter.ViewHolder>() {
+    inner class ViewHolder(val binding:ItemAddingFoodRcBinding):RecyclerView.ViewHolder(binding.root){
+        fun bind(item:FoodAddModel){
+            Glide.with(binding.root).load(item.url).listener(object :RequestListener<Drawable>{
                 override fun onLoadFailed(
                     e: GlideException?,
                     model: Any?,
                     target: Target<Drawable>,
                     isFirstResource: Boolean
                 ): Boolean {
-                loading.isVisible = false
+                    binding.progressbar.isVisible = false
                     return false
                 }
+
                 override fun onResourceReady(
                     resource: Drawable,
                     model: Any,
@@ -39,22 +36,25 @@ class BannerAdapter(
                     dataSource: DataSource,
                     isFirstResource: Boolean
                 ): Boolean {
-                    loading.isVisible = false
+                    binding.progressbar.isVisible = false
                     return false
                 }
 
-            }).into(image)
+            }).into(binding.image)
+            binding.category.text = item.category
+            binding.desc.text = item.desc
+            binding.title.text = item.name
+
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        ItemBannerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =ViewHolder(
+        ItemAddingFoodRcBinding.inflate(LayoutInflater.from(parent.context),parent,false)
     )
 
-    override fun getItemCount() = banners.banners.size
+    override fun getItemCount() =list.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(banners.banners[position])
+        holder.bind(list[position]!!)
     }
-
 }

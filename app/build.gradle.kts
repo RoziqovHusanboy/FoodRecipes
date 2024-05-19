@@ -123,5 +123,6 @@ dependencies {
     //biometric
     implementation ("androidx.biometric:biometric:1.2.0-alpha05")
 
-
+    //swipe refreshing
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

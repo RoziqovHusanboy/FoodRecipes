@@ -7,33 +7,30 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.math.log
 
 @HiltViewModel
 class AddFoodViewModel @Inject constructor(
     private val repo: CategoryRepository
 ) : ViewModel() {
-    val getFood = MutableLiveData<FoodAddModel>()
 
-    init {
-        getFoodLocal()
-    }
+
 
     fun saveFood(foodAddModel: FoodAddModel) = viewModelScope.launch {
-        try {
-            repo.saveNewFood(foodAddModel)
-        } catch (e: Exception) {
-            Log.d("TAG", "saveFood: $e")
+        withContext(NonCancellable) {
+            try {
+                repo.saveNewFood(foodAddModel)
+                Log.d("TAG", "saveFood:saved ")
+            } catch (e: Exception) {
+                Log.d("TAG", "saveFood: $e")
+            }
         }
     }
 
-    private fun getFoodLocal() = viewModelScope.launch {
-        try {
-            getFood.postValue(repo.getLocalFoods())
-        } catch (e: Exception) {
-            Log.d("TAG", "getFood:$e ")
-        }
-    }
+
 
 }

@@ -42,7 +42,10 @@ class MainActivity : AppCompatActivity() {
                         R.id.detailFragment,
                         R.id.searchFragment,
                         R.id.profileFragment,
-                        R.id.splashScreenFragment
+                        R.id.splashScreenFragment,
+                        R.id.productFragment,
+                        R.id.detailProductFragment,
+                        R.id.addFoodFragment
                     ).all {
                         it != destination.id
                     }

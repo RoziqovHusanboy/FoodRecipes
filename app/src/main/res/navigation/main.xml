@@ -20,6 +20,15 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_productFragment"
+            app:destination="@id/productFragment">
+            <argument android:name="title"
+                app:argType="string"/>
+        </action>
+        <action
+            android:id="@+id/action_homeFragment_to_addFoodFragment"
+            app:destination="@id/addFoodFragment" />
 
     </fragment>
     <fragment
@@ -115,6 +124,31 @@
         android:name="android.kurs.foodrecipes.presintation.add_food.AddFoodFragment"
         android:label="AddFoodFragment"
         tools:layout="@layout/fragment_add_food"
+        />
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="android.kurs.foodrecipes.presintation.product.ProductFragment"
+        android:label="ProductFragment"
+        tools:layout="@layout/fragment_product"
+        >
+        <action
+            android:id="@+id/action_productFragment_to_detailProductFragment"
+            app:destination="@id/detailProductFragment">
+            <argument android:name="id"
+                app:argType="string"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/detailProductFragment"
+        android:name="android.kurs.foodrecipes.presintation.detail_product.DetailProductFragment"
+        android:label="DetailProductFragment"
+        tools:layout="@layout/fragment_product_detail"
+        />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="android.kurs.foodrecipes.presintation.cart.CartFragment"
+        android:label="CartFragment"
+        tools:layout="@layout/fragment_cart"
         />
 
 

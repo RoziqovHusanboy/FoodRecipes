@@ -1,10 +1,14 @@
 package android.kurs.foodrecipes.presintation.home
 
+import android.annotation.SuppressLint
+import android.content.DialogInterface
+import android.content.DialogInterface.OnClickListener
 import android.kurs.foodrecipes.R
 import android.kurs.foodrecipes.data.model.category.CategoryX
 import android.kurs.foodrecipes.databinding.FragmentHomeBinding
 import android.kurs.foodrecipes.presintation.add_food.AddFoodFragment
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +24,7 @@ import com.zhpan.indicator.enums.IndicatorStyle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),View.OnClickListener {
     private lateinit var binding:FragmentHomeBinding
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var mAuth: FirebaseAuth
@@ -56,13 +60,19 @@ class HomeFragment : Fragment() {
         }
 
         binding.floatingBar.setOnClickListener {
-            val myDialog = AddFoodFragment()
-            fragmentManager?.let { it1 -> myDialog.show(it1,"AddFoodFragment") }
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAddFoodFragment())
         }
+
+        binding.saladConstraint.setOnClickListener(this)
+        binding.drinksConstraint.setOnClickListener(this)
+        binding.mainConstraint.setOnClickListener(this)
+        binding.dessertConstraint.setOnClickListener(this)
+
         subscribeToLiveData()
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun subscribeToLiveData() {
         viewModel.error.observe(viewLifecycleOwner){
             binding.error.root.isVisible = it
@@ -88,14 +98,41 @@ class HomeFragment : Fragment() {
             }
         }
 
+        viewModel.getFood.observe(viewLifecycleOwner){
+          //  Log.d("TAG", "subscribeToLiveData: ${it.last()?.desc}")
+            binding.recyclerLocalFood.adapter = ItemAddFoodAdapter(it)
+            binding.recyclerLocalFood.adapter?.notifyDataSetChanged()
+        }
+
+
+
     }
+
+    private fun putStringToProductFragment(title:String){
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToProductFragment(title))
+    }
+
 
     private fun onClick(categoryX: CategoryX){
         findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(categoryX.idCategory.toInt()))
     }
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.saladConstraint ->{
+                putStringToProductFragment("salad")
+            }
+            R.id.mainConstraint ->{
+                putStringToProductFragment("main")
+            }
+            R.id.drinksConstraint ->{
+                putStringToProductFragment("drink")
+            }
+            R.id.dessertConstraint ->{
+                putStringToProductFragment("dessert")
+            }
 
-
-
+        }
+    }
 
 
 }

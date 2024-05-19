@@ -7,4 +7,11 @@
     <string name="dialog_bottom_title">Сменить %s ?</string>
     <string name="item_bottom_sheet_text_distance">%s km</string>
     <string name="item_bottom_sheet_desc">нохияи Б.Гафуров, чамоти Гозиён, дехаи Котма, рохи мошингарди Конибодом-Ч.Рас</string>
+    <string name="item_product_price">$%.1f</string>
+    <string name="fragment_product_add">Add to card</string>
+    <string name="fragment_detail_cart_added">Item added to cart</string>
+    <string name="fragment_cart_title">Cart</string>
+    <string name="fragment_cart_item_total">Item Total</string>
+    <string name="fragment_cart_checkout">Checkout</string>
+    <string name="fragment_cart_empty">Cart is empty</string>
 </resources>

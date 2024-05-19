@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +18,11 @@ import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AddFoodFragment:DialogFragment() {
+class AddFoodFragment:Fragment() {
 private lateinit var binding:FragmentAddFoodBinding
 private val viewModel:AddFoodViewModel by viewModels ()
     private val PICK_IMAGE_REQUEST = 1
@@ -30,7 +32,7 @@ private val viewModel:AddFoodViewModel by viewModels ()
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAddFoodBinding.inflate(inflater,container,false)
+        binding = FragmentAddFoodBinding.inflate(inflater)
         return binding.root
     }
 
@@ -69,6 +71,7 @@ private val viewModel:AddFoodViewModel by viewModels ()
     }
 
     private fun updateButtonColor(uri: Uri?=null) {
+        Log.d("TAG", "updateButtonColor:$uri ")
         val isEditTextEmpty = binding.edittextName.text.isNullOrEmpty() ||
                 binding.edittextCategory.text.isNullOrEmpty() ||
                 binding.edittextDesc.text.isNullOrEmpty()
@@ -90,10 +93,11 @@ private val viewModel:AddFoodViewModel by viewModels ()
                          url =uri!!
                      )
                  )
+                 Log.d("TAG", "updateButtonColor: $sendNameText, $sendCategoryText,$sendDescText,$uri")
                  binding.edittextCategory.text.clear()
                  binding.edittextDesc.text.clear()
                  binding.edittextName.text.clear()
-                 dialog?.dismiss()
+                  findNavController().popBackStack()
              }
 
         }

@@ -8,6 +8,11 @@
     <item android:id="@+id/mapFragment"
         android:title="Map"
         android:icon="@drawable/ic_map"/>
+
+    <item android:id="@+id/cartFragment"
+        android:title="Cart"
+        android:icon="@drawable/buy__1_"/>
+
     <item android:id="@+id/settingFragment"
         android:title="Setting"
         android:icon="@drawable/ic_setting"/>
