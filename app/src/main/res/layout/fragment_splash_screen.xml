@@ -3,18 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#C7D1F9">
+    android:background="@color/indicator_cheked"
+    >
 
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/image_saladd"
+        android:src="@drawable/splash_screen_image1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/imageLogo"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="40dp"
         android:scaleType="centerCrop"
+
         />
     <TextView
         android:layout_width="wrap_content"
@@ -23,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@id/imageLogo"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="32dp"
-        android:textColor="#4CAF50"
+        android:textColor="#000000"
         android:textStyle="bold"
         android:textSize="38dp"
         android:id="@+id/textWelcome"
@@ -37,7 +39,7 @@
         android:layout_marginStart="-60dp"
         android:text="to Food Recipes app"
         android:textSize="26sp"
-        android:textColor="#F44336"
+        android:textColor="#6A6565"
         android:textStyle="bold"
         />
 

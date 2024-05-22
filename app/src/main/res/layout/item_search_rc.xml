@@ -24,6 +24,17 @@
             android:layout_gravity="center"
             android:scaleType="centerCrop"
             android:src="@drawable/dessert" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -40,6 +51,8 @@
         android:textColor="@android:color/black"
         android:textSize="16sp"
         />
+
+
 
 
 
