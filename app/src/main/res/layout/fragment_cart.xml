@@ -158,34 +158,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/checkout"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="32dp"
-         android:background="@drawable/button_background"
-        android:text="@string/fragment_cart_checkout"
-        android:textAllCaps="true"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="30dp"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/white"
-        android:indeterminateTintMode="src_atop"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/checkout"
-        app:layout_constraintEnd_toEndOf="@id/checkout"
-        app:layout_constraintStart_toStartOf="@id/checkout"
-        app:layout_constraintTop_toTopOf="@id/checkout" />
-
     <TextView
         android:id="@+id/empty"
         android:layout_width="wrap_content"

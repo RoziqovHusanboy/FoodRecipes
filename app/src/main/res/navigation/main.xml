@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="android.kurs.foodrecipes.presintation.home.HomeFragment"
+        android:name="android.kurs.foodrecipes.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -26,53 +26,52 @@
             <argument android:name="title"
                 app:argType="string"/>
         </action>
-        <action
-            android:id="@+id/action_homeFragment_to_addFoodFragment"
-            app:destination="@id/addFoodFragment" />
+
 
     </fragment>
     <fragment
-        android:id="@+id/logInFragment"
-        android:name="android.kurs.foodrecipes.presintation.login.LogInFragment"
-        android:label="LogInFragment"
-        tools:layout="@layout/fragment_login_in"
+        android:id="@+id/SignInFragment"
+        android:name="android.kurs.foodrecipes.presentation.sign_in.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/fragment_sign__in_"
         >
         <action
-            android:id="@+id/action_logInFragment_to_homeFragment2"
+            android:id="@+id/to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/logInFragment"
+            app:popUpTo="@id/SignInFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_logInFragment_to_signUpFragment"
+            android:id="@+id/to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_logInFragment_to_forgotFragment"
+            android:id="@+id/to_forgotFragment"
             app:destination="@id/forgotFragment" />
     </fragment>
 
     <action
-        android:id="@+id/to_logInFragment"
-        app:destination="@+id/logInFragment"
+        android:id="@+id/signInFragment"
+        app:destination="@+id/SignInFragment"
         app:popUpTo="@id/main"/>
+
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="android.kurs.foodrecipes.presintation.logSign_up.SignUpFragment"
+        android:name="android.kurs.foodrecipes.presentation.sign_up.SignUpFragment"
         android:label="SignUpFragment"
-        tools:layout="@layout/fragment_login_up"
+        tools:layout="@layout/fragment_sign__up_"
         >
         <action
-            android:id="@+id/to_logInFragment"
-            app:destination="@id/logInFragment" />
+            android:id="@+id/to_signInFragment"
+            app:destination="@id/SignInFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotFragment"
-        android:name="android.kurs.foodrecipes.presintation.login.ForgotFragment"
+        android:name="android.kurs.foodrecipes.presentation.sign_in.ForgotFragment"
         android:label="ForgotFragment"
         tools:layout="@layout/fragment_login_reset"
         />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="android.kurs.foodrecipes.presintation.home.DetailFragment"
+        android:name="android.kurs.foodrecipes.presentation.detail_home.DetailFragment"
         android:label="detailFragment"
         tools:layout="@layout/fragment_detail">
 
@@ -83,19 +82,19 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="android.kurs.foodrecipes.presintation.search.SearchFragment"
+        android:name="android.kurs.foodrecipes.presentation.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search"
         />
     <fragment
         android:id="@+id/mapFragment"
-        android:name="android.kurs.foodrecipes.presintation.map.MapFragment"
+        android:name="android.kurs.foodrecipes.presentation.map.MapFragment"
         android:label="MapFragment"
         tools:layout="@layout/fragment_map"
         />
     <fragment
         android:id="@+id/settingFragment"
-        android:name="android.kurs.foodrecipes.presintation.setting.SettingFragment"
+        android:name="android.kurs.foodrecipes.presentation.setting.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting"
         >
@@ -105,29 +104,27 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="android.kurs.foodrecipes.presintation.profile.ProfileFragment"
+        android:name="android.kurs.foodrecipes.presentation.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"
         />
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="android.kurs.foodrecipes.presintation.splash.SplashScreenFragment"
+        android:name="android.kurs.foodrecipes.presentation.splash.SplashScreenFragment"
         android:label="SplashScreenFragment"
         tools:layout="@layout/fragment_splash_screen"
         >
         <action
-            android:id="@+id/action_splashScreenFragment_to_logInFragment"
-            app:destination="@id/logInFragment" />
+            android:id="@+id/action_splashScreenFragment_to_SignInFragment"
+            app:destination="@id/SignInFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/addFoodFragment"
-        android:name="android.kurs.foodrecipes.presintation.add_food.AddFoodFragment"
-        android:label="AddFoodFragment"
-        tools:layout="@layout/fragment_add_food"
-        />
+
     <fragment
         android:id="@+id/productFragment"
-        android:name="android.kurs.foodrecipes.presintation.product.ProductFragment"
+        android:name="android.kurs.foodrecipes.presentation.product.ProductFragment"
         android:label="ProductFragment"
         tools:layout="@layout/fragment_product"
         >
@@ -140,16 +137,26 @@
     </fragment>
     <fragment
         android:id="@+id/detailProductFragment"
-        android:name="android.kurs.foodrecipes.presintation.detail_product.DetailProductFragment"
+        android:name="android.kurs.foodrecipes.presentation.detail_product.DetailProductFragment"
         android:label="DetailProductFragment"
         tools:layout="@layout/fragment_product_detail"
         />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="android.kurs.foodrecipes.presintation.cart.CartFragment"
+        android:name="android.kurs.foodrecipes.presentation.cart.CartFragment"
         android:label="CartFragment"
         tools:layout="@layout/fragment_cart"
         />
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="android.kurs.foodrecipes.presentation.onboarding.OnboardingFragment"
+        android:label="OnboardingFragment"
+        tools:layout="@layout/fragment_onboarding"
+        >
+        <action
+            android:id="@+id/action_onboardingFragment_to_SignInFragmetn"
+            app:destination="@id/SignInFragment" />
+    </fragment>
 
 
 </navigation>

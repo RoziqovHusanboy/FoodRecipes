@@ -64,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Добавить фото"
+        android:text="Add photo"
         android:textColor="#23325C"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Мобильный номер"
+                android:text="Mobile number"
 
                 android:textColor="#7B849D"
                 android:textSize="12sp" />
@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="+992 92811-00-33"
+                tools:text="+992 92811-00-33"
                 android:textColor="#7B849D"
                 android:textSize="12sp" />
 
@@ -120,9 +120,10 @@
         android:id="@+id/imageViewEditPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         android:tint="#7B849D"
+        android:padding="5dp"
         android:src="@drawable/fragment_profile_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/phoneLayout"
@@ -156,7 +157,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="ФИО"
+                android:text="Full Name"
                 android:textColor="#7B849D"
                 android:textSize="12sp" />
 
@@ -165,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Сухроб Ходжаев"
+                tools:text="Сухроб Ходжаев"
                 android:textColor="#7B849D"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -175,8 +176,9 @@
         android:id="@+id/imageViewEditFIO"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="32dp"
+        android:padding="5dp"
         android:tint="#7B849D"
         android:src="@drawable/fragment_profile_edit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -213,7 +215,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Местоположение"
+                android:text="Location"
                 android:textColor="#7B849D"
                 android:textSize="12sp" />
 
@@ -222,24 +224,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Худжанд"
-
+                tools:text="Худжанд"
                 android:textColor="#7B849D"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageViewEditLocation"
+        android:id="@+id/imageViewLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="32dp"
-        android:tint="#7B849D"
+        android:padding="5dp"
         android:src="@drawable/fragment_profile_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/locationLayout"
-        tools:ignore="UseAppTint" />
+        app:tint="#7B849D" />
 
     <LinearLayout
         android:id="@+id/gmailLayout"
@@ -271,8 +272,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-
-                android:text="Электронная почта"
+                android:text="Email"
                 android:textColor="#7B849D"
                 android:textSize="12sp" />
 
@@ -281,23 +281,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="suhrobkh0033@gmail.com"
+                tools:text="suhrobkh0033@gmail.com"
                 android:textColor="#7B849D"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageViewEditGmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="32dp"
-        android:tint="#7B849D"
-        android:src="@drawable/fragment_profile_edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/gmailLayout"
-        tools:ignore="UseAppTint" />
 
     <LinearLayout
         android:id="@+id/birthLayout"
@@ -329,7 +317,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Дата рождения"
+                android:text="Date of Birth"
                 android:textColor="#7B849D"
                 android:textSize="12sp" />
 
@@ -338,7 +326,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="21.07.1988"
+                tools:text="21.07.1988"
                 android:textColor="#7B849D"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -348,9 +336,10 @@
         android:id="@+id/imageViewEditBirth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:tint="#7B849D"
         android:layout_marginEnd="32dp"
+        android:padding="5dp"
         android:src="@drawable/fragment_profile_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/birthLayout"

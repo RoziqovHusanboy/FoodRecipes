@@ -1,7 +1,7 @@
 package android.kurs.foodrecipes.di
 
-import android.kurs.foodrecipes.data.api.categories.Api
-import android.kurs.foodrecipes.data.api.home.HomeApi
+import tj.tajsoft.data.api.meal.MealApi
+import tj.tajsoft.data.api.home.HomeApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +16,7 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideCategoryApi( @Named("ApiServiceOne") retrofit: Retrofit) = retrofit.create(Api::class.java)
+    fun provideMealApi(@Named("ApiServiceOne") retrofit: Retrofit) = retrofit.create(MealApi::class.java)
     @Provides
     @Singleton
     fun provideHomeApi( @Named("ApiServiceTwo") retrofit: Retrofit) = retrofit.create(HomeApi::class.java)
