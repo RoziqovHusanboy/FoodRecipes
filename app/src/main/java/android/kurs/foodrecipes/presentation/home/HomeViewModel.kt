@@ -22,8 +22,8 @@ class HomeViewModel @Inject constructor(
     private val homeRepository: HomeRepository
 ) : ViewModel() {
 
-    private var category = MutableLiveData<Category>()
-    private var home = MutableLiveData<ResponseHome>()
+    private var category = MutableLiveData<Category?>()
+    private var home = MutableLiveData<ResponseHome>( )
     val _category get() = category
     val _home get() = home
 

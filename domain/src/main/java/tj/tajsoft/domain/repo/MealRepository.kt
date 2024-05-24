@@ -6,7 +6,7 @@ import tj.tajsoft.domain.model.network.category.Category
 import tj.tajsoft.domain.model.network.filterByArea.ResponseFilterByArea
 
 interface MealRepository {
-    suspend fun getCategory(): Category
+    suspend fun getCategory(): Category?
     suspend fun getFoodFilterByArea(title:String): ResponseFilterByArea
     suspend fun saveNewFood(foodAddModel: FoodAddModel)
     suspend fun getLocalFoods(): Array<FoodAddModel>?
