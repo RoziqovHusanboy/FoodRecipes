@@ -35,11 +35,13 @@ class DetailFragment : Fragment() {
                 findNavController().popBackStack()
             }
             viewmodel._category.observe(viewLifecycleOwner) {
-                it.categories.forEach {
-                    if (args.id == it.idCategory.toInt()) {
-                        this.title.text = it.strCategory
-                        this.destination.text = it.strCategoryDescription
-                        Glide.with(this.root).load(it.strCategoryThumb).into(this.image)
+                it?.let{
+                    it.categories.forEach {
+                        if (args.id == it.idCategory.toInt()) {
+                            this.title.text = it.strCategory
+                            this.destination.text = it.strCategoryDescription
+                            Glide.with(this.root).load(it.strCategoryThumb).into(this.image)
+                        }
                     }
                 }
             }

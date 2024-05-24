@@ -17,7 +17,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val repo: ProfileSaveRepo
 ):ViewModel() {
-    val phoneNumber = MutableLiveData<String>()
+    val phoneNumber = MutableLiveData<String?>()
     val fullName = MutableLiveData<String>()
     val location = MutableLiveData<String>()
     val birthDay = MutableLiveData<String>()
@@ -73,7 +73,7 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun getBirthDay() = launchWithCatch {
-        birthDay.postValue(repo.getBirthDay())
+        birthDay.postValue(repo.getBirthDay()?:"")
     }
 
     ///////  <----------- work with gallery -------->  /////////

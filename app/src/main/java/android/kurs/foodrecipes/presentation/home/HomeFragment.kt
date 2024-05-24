@@ -83,8 +83,10 @@ class HomeFragment : Fragment(),View.OnClickListener  {
         }
 
         viewModel._category.observe(viewLifecycleOwner){category->
-            binding.recyclerPopular.layoutManager =LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-            binding.recyclerPopular.adapter =   PopularItemAdapter(category.categories,this::onClick)
+            category?.let {
+                binding.recyclerPopular.layoutManager =LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                binding.recyclerPopular.adapter =   PopularItemAdapter(category.categories,this::onClick)
+            }
         }
         viewModel._home.observe(viewLifecycleOwner){
             binding.banners.adapter = BannerAdapter(it)

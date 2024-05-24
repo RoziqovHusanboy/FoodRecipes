@@ -15,7 +15,7 @@ class DetailViewModel @Inject constructor(
 ) : ViewModel() {
     val loading = MutableLiveData(false)
     val error = MutableLiveData(false)
-    private val category = MutableLiveData<Category>()
+    private val category = MutableLiveData<Category?>()
     val _category get() = category
     init {
 
