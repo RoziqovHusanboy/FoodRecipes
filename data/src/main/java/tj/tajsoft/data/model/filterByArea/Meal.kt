@@ -3,7 +3,7 @@ package tj.tajsoft.data.model.filterByArea
 
 import com.google.gson.annotations.SerializedName
 
-data class Meal(
+data class      Meal(
     @SerializedName("idMeal")
     val idMeal: String,
     @SerializedName("strMeal")
