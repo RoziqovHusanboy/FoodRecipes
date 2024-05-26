@@ -1,7 +1,7 @@
 package android.kurs.foodrecipes.presentation.detail_home
 
- import android.kurs.foodrecipes.databinding.FragmentDetailBinding
- import android.os.Bundle
+import android.kurs.foodrecipes.databinding.FragmentDetailBinding
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +16,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
-    private val args by navArgs<DetailFragmentArgs>()
+    private var id:String = ""
     private val viewmodel by viewModels<DetailViewModel>()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            id = it.getString("id")!!
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,9 +41,9 @@ class DetailFragment : Fragment() {
                 findNavController().popBackStack()
             }
             viewmodel._category.observe(viewLifecycleOwner) {
-                it?.let{
-                    it.categories.forEach {
-                        if (args.id == it.idCategory.toInt()) {
+                it?.let {
+                    it.forEach {
+                        if (id == it.idCategory.toInt().toString()) {
                             this.title.text = it.strCategory
                             this.destination.text = it.strCategoryDescription
                             Glide.with(this.root).load(it.strCategoryThumb).into(this.image)
@@ -46,7 +52,7 @@ class DetailFragment : Fragment() {
                 }
             }
 
-            viewmodel.error.observe(viewLifecycleOwner){
+            viewmodel.error.observe(viewLifecycleOwner) {
                 binding.progress.isVisible = it
             }
         }

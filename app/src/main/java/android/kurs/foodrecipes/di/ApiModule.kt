@@ -1,7 +1,7 @@
 package android.kurs.foodrecipes.di
 
-import tj.tajsoft.data.api.meal.MealApi
-import tj.tajsoft.data.api.home.HomeApi
+import tj.tajsoft.data.remote.api.meal.MealApi
+import tj.tajsoft.data.remote.api.home.HomeApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

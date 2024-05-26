@@ -2,7 +2,7 @@ package android.kurs.foodrecipes.presentation.search
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
-import tj.tajsoft.domain.model.network.filterByArea.Meal
+import tj.tajsoft.domain.model.network.filterByArea.FilterByAreaEntity
 import android.kurs.foodrecipes.databinding.ItemSearchRcBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -15,12 +15,12 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
-class SearchAdapter(var list: MutableList<Meal>) :
+class SearchAdapter(var list: MutableList<FilterByAreaEntity>) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
-    private  var filterList: MutableList<Meal> = list
+    private  var filterList: MutableList<FilterByAreaEntity> = list
 
     inner class SearchViewHolder(val binding: ItemSearchRcBinding) : ViewHolder(binding.root) {
-        fun bind(meal: Meal) {
+        fun bind(meal: FilterByAreaEntity) {
             Glide.with(binding.root).load(meal.strMealThumb).listener(object :RequestListener<Drawable>{
                 override fun onLoadFailed(
                     e: GlideException?,

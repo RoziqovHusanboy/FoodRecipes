@@ -2,7 +2,7 @@ package android.kurs.foodrecipes.presentation.home
 
 import android.annotation.SuppressLint
 import android.kurs.foodrecipes.R
-import tj.tajsoft.domain.model.network.category.CategoryX
+import tj.tajsoft.domain.model.network.category.CategoryEntity
 import android.kurs.foodrecipes.databinding.FragmentHomeBinding
 import android.kurs.foodrecipes.presentation.home.adapter.BannerAdapter
 import android.kurs.foodrecipes.presentation.home.adapter.PopularItemAdapter
@@ -15,7 +15,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.zhpan.indicator.enums.IndicatorSlideMode
@@ -85,14 +84,14 @@ class HomeFragment : Fragment(),View.OnClickListener  {
         viewModel._category.observe(viewLifecycleOwner){category->
             category?.let {
                 binding.recyclerPopular.layoutManager =LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-                binding.recyclerPopular.adapter =   PopularItemAdapter(category.categories,this::onClick)
+                binding.recyclerPopular.adapter =   PopularItemAdapter(category,this::onClick)
             }
         }
         viewModel._home.observe(viewLifecycleOwner){
             binding.banners.adapter = BannerAdapter(it)
             binding.indecator.setupWithViewPager(binding.banners)
             binding.indecator.apply {
-                setPageSize(it.banners.size)
+                setPageSize(it.size)
                 notifyDataChanged()
             }
         }
@@ -108,7 +107,7 @@ class HomeFragment : Fragment(),View.OnClickListener  {
     }
 
 
-    private fun onClick(categoryX: CategoryX){
+    private fun onClick(categoryX: CategoryEntity){
         findNavController().navigate(
             HomeFragmentDirections.actionHomeFragmentToDetailFragment(
                 categoryX.idCategory.toInt()

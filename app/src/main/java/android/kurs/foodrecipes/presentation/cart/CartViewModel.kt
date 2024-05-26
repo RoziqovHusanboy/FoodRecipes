@@ -7,7 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tj.tajsoft.domain.model.local.Cart
-import tj.tajsoft.domain.repo.HomeRepository
+import tj.tajsoft.domain.repository.HomeRepository
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,8 +15,11 @@ class CartViewModel @Inject constructor(
     private val repo: HomeRepository
 ) : ViewModel() {
 
-    val carts = MutableLiveData<List<Cart>?>()
-    val loading = MutableLiveData(false)
+    private val _carts = MutableLiveData<List<Cart>?>()
+    val carts get() = _carts
+    private val _loading = MutableLiveData(false)
+    val loading get() = _loading
+
     init {
         getCarts()
     }
@@ -24,7 +27,7 @@ class CartViewModel @Inject constructor(
 
     private fun getCarts() = viewModelScope.launch {
         repo.getCarts().collectLatest {
-            carts.postValue(it)
+            _carts.postValue(it)
         }
 
     }

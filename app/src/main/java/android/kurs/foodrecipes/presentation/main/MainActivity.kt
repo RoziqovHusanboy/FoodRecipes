@@ -1,8 +1,8 @@
 package android.kurs.foodrecipes.presentation.main
 
-import android.kurs.foodrecipes.R
-import android.kurs.foodrecipes.databinding.ActivityMainBinding
-import androidx.appcompat.app.AppCompatActivity
+  import android.kurs.foodrecipes.R
+  import android.kurs.foodrecipes.databinding.ActivityMainBinding
+  import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.forEachIndexed
 import androidx.core.view.isVisible

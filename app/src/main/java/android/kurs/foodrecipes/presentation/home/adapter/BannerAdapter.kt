@@ -1,9 +1,7 @@
 package android.kurs.foodrecipes.presentation.home.adapter
 
-import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
-import tj.tajsoft.domain.model.network.home.get_home.Banner
-import tj.tajsoft.domain.model.network.home.get_home.ResponseHome
+import tj.tajsoft.domain.model.network.home.get_home.BannerEntity
 import android.kurs.foodrecipes.databinding.ItemBannerBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,11 +14,11 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
 class BannerAdapter(
-    private val banners: ResponseHome
+    private val banners: List<BannerEntity>
 ) : RecyclerView.Adapter<BannerAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemBannerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(banner: Banner) = with(binding) {
+        fun bind(banner: BannerEntity) = with(binding) {
             Glide.with(root).load(banner.image).listener(object :RequestListener<Drawable>{
                 override fun onLoadFailed(
                     e: GlideException?,
@@ -52,10 +50,10 @@ class BannerAdapter(
         ItemBannerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
-    override fun getItemCount() = banners.banners.size
+    override fun getItemCount() = banners.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(banners.banners[position])
+        holder.bind(banners[position])
     }
 
 }

@@ -12,7 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:src="@drawable/fragment_onboarding_image"
+        tools:src="@drawable/onboarind_image_0"
         android:adjustViewBounds="true"
         android:layout_marginTop="28dp"
         />
