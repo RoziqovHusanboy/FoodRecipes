@@ -2,7 +2,7 @@ package android.kurs.foodrecipes.presentation.product
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
-import tj.tajsoft.domain.model.network.home.get_category.ResponseProductsItem
+import tj.tajsoft.domain.model.network.home.product.ProductEntity
 import android.kurs.foodrecipes.databinding.ItemProductBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -15,13 +15,13 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
 class ProductAdapter(
-    val list:MutableList<ResponseProductsItem>,
+    val list:MutableList<ProductEntity>,
     val onclick:(id:String)->Unit
 ):RecyclerView.Adapter<ProductAdapter.ViewHolderProduct>() {
 
     inner class ViewHolderProduct(val binding:ItemProductBinding):RecyclerView.ViewHolder(binding.root){
         @SuppressLint("SetTextI18n")
-        fun bind(item: ResponseProductsItem) = with(binding){
+        fun bind(item: ProductEntity) = with(binding){
             Glide.with(binding.root).load(item.image).listener(object:RequestListener<Drawable>{
                 override fun onLoadFailed(
                     e: GlideException?,

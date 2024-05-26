@@ -5,11 +5,11 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import tj.tajsoft.data.repo.HomeRepoImpl
-import tj.tajsoft.data.repo.MealRepoImpl
-import tj.tajsoft.domain.repo.HomeRepository
-import tj.tajsoft.domain.repo.MealRepository
-import tj.tajsoft.domain.repo.ProfileSaveRepo
+import tj.tajsoft.data.repository.HomeRepoImpl
+import tj.tajsoft.data.repository.MealRepoImpl
+import tj.tajsoft.domain.repository.HomeRepository
+import tj.tajsoft.domain.repository.MealRepository
+import tj.tajsoft.domain.repository.ProfileSaveRepo
 
 @Module
 @InstallIn(SingletonComponent::class)

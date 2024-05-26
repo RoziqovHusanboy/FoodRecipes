@@ -1,13 +1,13 @@
 package android.kurs.foodrecipes.presentation.detail_product
 
 import tj.tajsoft.domain.model.local.Cart
-import tj.tajsoft.domain.model.network.home.get_category.ResponseProducts
- import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import tj.tajsoft.domain.repo.HomeRepository
+import tj.tajsoft.domain.model.network.home.product.ProductEntity
+import tj.tajsoft.domain.repository.HomeRepository
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,10 +16,11 @@ class DetailProductViewModel @Inject constructor(
 )
     :ViewModel() {
 
-    private var products = MutableLiveData<ResponseProducts>()
+    private var products = MutableLiveData< List<ProductEntity>>()
     val _product get() = products
-    val loading = MutableLiveData(false)
-    val error = MutableLiveData(false)
+   private val _loading = MutableLiveData(false)
+    val loading get() = _loading
+   private val error = MutableLiveData(false)
     val _error = MutableLiveData<Exception>()
     val count = MutableLiveData(1)
 
@@ -27,7 +28,7 @@ class DetailProductViewModel @Inject constructor(
         getHomeCategory()
     }
     private fun getHomeCategory() = viewModelScope.launch {
-        loading.postValue(true)
+        _loading.postValue(true)
         error.postValue(false)
         try {
             val response = repo.getProduct()
@@ -35,7 +36,7 @@ class DetailProductViewModel @Inject constructor(
         }catch (e:Exception){
             error.postValue(true)
         }finally {
-            loading.postValue(false)
+            _loading.postValue(false)
         }
     }
 

@@ -3,7 +3,6 @@ package android.kurs.foodrecipes.presentation.detail_product
 import android.graphics.drawable.Drawable
 import android.kurs.foodrecipes.R
 import android.kurs.foodrecipes.databinding.FragmentProductDetailBinding
-import tj.tajsoft.domain.repo.OnClickRelatedInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,9 +20,9 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailProductFragment: Fragment(), OnClickRelatedInterface {
-private lateinit var binding:FragmentProductDetailBinding
-private val viewModel: DetailProductViewModel by viewModels()
+class DetailProductFragment : Fragment(), OnClickRelatedInterface {
+    private lateinit var binding: FragmentProductDetailBinding
+    private val viewModel: DetailProductViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,9 +31,10 @@ private val viewModel: DetailProductViewModel by viewModels()
         binding = FragmentProductDetailBinding.inflate(inflater)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var id=""
+        var id = ""
         arguments?.let {
             id = it.getString("id")!!
         }
@@ -49,10 +49,11 @@ private val viewModel: DetailProductViewModel by viewModels()
             viewModel.increment()
         }
 
-        viewModel._product.observe(viewLifecycleOwner){
-            it.forEach {
-                if (it.id==id){
-                    Glide.with(binding.root).load(it.image).listener(object :RequestListener<Drawable>{
+        viewModel._product.observe(viewLifecycleOwner) {
+            val filteredList = it.filter { it.id == id }
+            filteredList.forEach {
+                Glide.with(binding.root).load(it.image)
+                    .listener(object : RequestListener<Drawable> {
                         override fun onLoadFailed(
                             e: GlideException?,
                             model: Any?,
@@ -62,6 +63,7 @@ private val viewModel: DetailProductViewModel by viewModels()
                             binding.progress.isVisible = false
                             return false
                         }
+
                         override fun onResourceReady(
                             resource: Drawable,
                             model: Any,
@@ -74,33 +76,34 @@ private val viewModel: DetailProductViewModel by viewModels()
                         }
                     }).into(binding.image)
 
-                    binding.title.text = it.title
-                    binding.price.text = "$${it.price}"
-                    binding.description.text = it.desc
-                    binding.products.adapter = RelatedAdapter(it.related,this)
-                    viewModel.count.observe(viewLifecycleOwner){
-                        binding.count.text = it.toString()
-                    }
+                binding.title.text = it.title
+                binding.price.text = "$${it.price}"
+                binding.description.text = it.desc
+                binding.products.adapter = RelatedAdapter(it.related, this)
+                viewModel.count.observe(viewLifecycleOwner) {
+                    binding.count.text = it.toString()
+                }
 
-                    binding.add.setOnClickListener {view->
-                        viewModel.set(
-                            id = it.id,
-                            title = it.title,
-                            image = it.image,
-                            price = it.price.toString().toDouble()
-                        )
-                        Snackbar.make(binding.root, R.string.fragment_detail_cart_added,Snackbar.LENGTH_SHORT).show()
-                        findNavController().popBackStack()
-                    }
+                binding.add.setOnClickListener { view ->
+                    viewModel.set(
+                        id = it.id,
+                        title = it.title,
+                        image = it.image,
+                        price = it.price.toString().toDouble()
+                    )
+                    Snackbar.make(
+                        binding.root,
+                        R.string.fragment_detail_cart_added,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    findNavController().popBackStack()
                 }
             }
         }
-
-
     }
 
     override fun onClick(drawable: String) {
-        Glide.with(binding.root).load(drawable).listener(object :RequestListener<Drawable>{
+        Glide.with(binding.root).load(drawable).listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(
                 e: GlideException?,
                 model: Any?,
@@ -110,6 +113,7 @@ private val viewModel: DetailProductViewModel by viewModels()
                 binding.progress.isVisible = false
                 return false
             }
+
             override fun onResourceReady(
                 resource: Drawable,
                 model: Any,

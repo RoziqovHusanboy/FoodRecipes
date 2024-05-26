@@ -38,7 +38,8 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun SubscribeToLiveData() {
 
         viewModel.filterFoods.observe(viewLifecycleOwner) {
-            recyclerViewAdapter = SearchAdapter(it.meals)
+           val mutableList =  it.toMutableList()
+            recyclerViewAdapter = SearchAdapter(mutableList)
             binding.recyclerViewFoods.adapter = recyclerViewAdapter
         }
         viewModel.loading.observe(viewLifecycleOwner) {

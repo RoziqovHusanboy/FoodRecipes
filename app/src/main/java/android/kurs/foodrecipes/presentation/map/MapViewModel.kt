@@ -12,7 +12,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import tj.tajsoft.domain.repo.MealRepository
+import tj.tajsoft.domain.repository.MealRepository
 import javax.inject.Inject
 
 @HiltViewModel

@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import tj.tajsoft.domain.model.network.filterByArea.ResponseFilterByArea
-import tj.tajsoft.domain.repo.MealRepository
+import tj.tajsoft.domain.model.network.filterByArea.FilterByAreaEntity
+import tj.tajsoft.domain.repository.MealRepository
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,10 +14,14 @@ class SearchViewModel @Inject constructor(
     private val repo: MealRepository
 ) : ViewModel() {
 
-    private val _filterFoods = MutableLiveData<ResponseFilterByArea>()
+    private val _filterFoods = MutableLiveData<List<FilterByAreaEntity>>()
     val filterFoods get() = _filterFoods
-      var loading = MutableLiveData(false)
-      var error = MutableLiveData(false)
+    private var _loading = MutableLiveData(false)
+    val loading get() = _loading
+
+    private var _error = MutableLiveData(false)
+    val error get() = _error
+
 
     init {
         getFilteringFoods("American")
@@ -25,15 +29,15 @@ class SearchViewModel @Inject constructor(
 
       fun getFilteringFoods(title: String) = viewModelScope.launch {
 
-        loading.postValue(true)
+        _loading.postValue(true)
         try {
             val response = repo.getFoodFilterByArea(title)
             _filterFoods.postValue(response)
         } catch (e: Exception) {
-            loading.postValue(false)
-            error.postValue(true)
+            _loading.postValue(false)
+            _error.postValue(true)
         } finally {
-            loading.postValue(false)
+            _loading.postValue(false)
         }
 
     }

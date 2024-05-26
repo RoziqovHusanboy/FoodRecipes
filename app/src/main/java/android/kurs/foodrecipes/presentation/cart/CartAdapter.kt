@@ -14,7 +14,7 @@ import tj.tajsoft.utils.dp
 class CartAdapter(
     private val carts: List<Cart>,
     private val set: (cart: Cart) -> Unit
-) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<android.kurs.foodrecipes.presentation.cart.CartAdapter.ViewHolder>() {
 
 
     inner class ViewHolder(private val binding: ItemCartBinding) :
@@ -49,7 +49,7 @@ class CartAdapter(
 
     override fun getItemCount() = carts.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder :CartAdapter.ViewHolder, position: Int) {
         holder.bind(carts[position])
     }
 

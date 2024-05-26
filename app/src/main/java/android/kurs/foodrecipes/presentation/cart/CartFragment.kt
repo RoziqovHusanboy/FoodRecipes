@@ -37,7 +37,11 @@ class CartFragment : Fragment() {
             binding.products.adapter?.notifyDataSetChanged()
             it?.let {
 
-                binding.products.adapter = CartAdapter(it, this@CartFragment::set)
+                binding.products.adapter =
+                    CartAdapter(
+                        it,
+                        this@CartFragment::set
+                    )
                 binding.empty.isVisible = it.isEmpty()
                 binding.content.isVisible = it.isNotEmpty()
                 if (it.isNotEmpty()) {

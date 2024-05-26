@@ -1,7 +1,7 @@
 package android.kurs.foodrecipes.presentation.home.adapter
 
 import android.graphics.drawable.Drawable
-import tj.tajsoft.domain.model.network.category.CategoryX
+import tj.tajsoft.domain.model.network.category.CategoryEntity
 import android.kurs.foodrecipes.databinding.PopularRecyclerItemBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,11 +14,11 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
-class PopularItemAdapter(val list:List<CategoryX>, val onClick:(categoryX: CategoryX)->Unit):RecyclerView.Adapter<PopularItemAdapter.VH>() {
+class PopularItemAdapter(val list:List<CategoryEntity>, val onClick:(categoryX: CategoryEntity)->Unit):RecyclerView.Adapter<PopularItemAdapter.VH>() {
     inner class VH(val binding:PopularRecyclerItemBinding):ViewHolder(binding.root){
 
-        fun bind(categoryX: CategoryX){
-            Glide.with(binding.root).load(categoryX.strCategoryThumb).listener(object :
+        fun bind(getCategoryEntity: CategoryEntity){
+            Glide.with(binding.root).load(getCategoryEntity.strCategoryThumb).listener(object :
                 RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,
@@ -44,9 +44,9 @@ class PopularItemAdapter(val list:List<CategoryX>, val onClick:(categoryX: Categ
 
             }).into(binding.imageview)
 
-            binding.title.text = categoryX.strCategory
+            binding.title.text = getCategoryEntity.strCategory
             binding.root.setOnClickListener {
-                onClick(categoryX)
+                onClick(getCategoryEntity)
             }
         }
 

@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">FoodRecipes</string>
+    <string name="splash_screen_title_btn">Get Started</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_fragment_desc">Which tajik food would you like to cook?</string>
+    <string name="dialog_bottom_title">Change %s ?</string>
+    <string name="item_bottom_sheet_text_distance">%s km</string>
+    <string name="item_bottom_sheet_desc">нохияи Б.Гафуров, чамоти Гозиён, дехаи Котма, рохи мошингарди Конибодом-Ч.Рас</string>
+    <string name="item_product_price">$%.1f</string>
+    <string name="fragment_product_add">Add to card</string>
+    <string name="fragment_detail_cart_added">Item added to cart</string>
+    <string name="fragment_cart_title">Cart</string>
+    <string name="fragment_cart_item_total">Item Total</string>
+    <string name="fragment_cart_checkout">Checkout</string>
+    <string name="fragment_cart_empty">Cart is empty</string>
+    <string name="next">Next</string>
+    <string name="fragment_onboarding_get_string">Get Started</string>
+    <string name="fragment_onboarding_next">Next</string>
+    <string name="onboarding_title_0">Welcome to Food Applications</string>
+    <string name="onboarding_desc_0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</string>
+    <string name="onboarding_title_1">Best Quality and \nFast Delivery!</string>
+    <string name="onboarding_desc_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</string>
+    <string name="fragment_sign_in_title">Welcome back</string>
+    <string name="fragment_sign_in_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</string>
+    <string name="fragment_sign_in_username">Username</string>
+    <string name="fragment_sign_in_password">Password</string>
+    <string name="fragment_sign_in_forgot_password">Forgot Password?</string>
+    <string name="fragment_sign_in_no_account">Don\\\'t have an account?</string>
+    <string name="fragment_sign_in_sign_up">Sign Up</string>
+    <string name="fragment_sign_up_title">Create your account</string>
+    <string name="fragment_sign_up_email">Email</string>
+    <string name="fragmnet_sign_up_register">Register</string>
+    <string name="fragment_sign_up_have_account">Alredy have an account?</string>
+    <string name="fragment_sign_up_sign_in">Sign In</string>
+</resources>

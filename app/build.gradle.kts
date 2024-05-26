@@ -76,13 +76,16 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 
+    implementation ("com.nex3z:flow-layout:1.3.3")
 
 
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
-
+    //daggerHilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-compiler:2.48")
 
     //dependiencies
 
@@ -99,15 +102,15 @@ dependencies {
     //Coroutines Lifecycle Scope
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("com.nex3z:flow-layout:1.3.3")
 
-    implementation ("com.nex3z:flow-layout:1.3.3")
 
     //glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
     //viewPager 2
-    implementation ("androidx.viewpager2:viewpager2:1.0.0")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 
-    implementation ("com.github.zhpanvip:viewpagerindicator:1.2.1")
+    implementation("com.github.zhpanvip:viewpagerindicator:1.2.1")
 
 
     //swipe refresh
@@ -116,9 +119,10 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
 
     //biometric
-    implementation ("androidx.biometric:biometric:1.2.0-alpha05")
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
 
     //swipe refreshing
-    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
 
 }

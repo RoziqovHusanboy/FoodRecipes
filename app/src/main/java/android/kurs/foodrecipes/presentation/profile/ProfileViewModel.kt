@@ -2,7 +2,7 @@ package android.kurs.foodrecipes.presentation.profile
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import tj.tajsoft.domain.repo.ProfileSaveRepo
+import tj.tajsoft.domain.repository.ProfileSaveRepo
 import android.util.Base64
 import android.util.Log
 import androidx.core.net.toUri
@@ -17,11 +17,16 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val repo: ProfileSaveRepo
 ):ViewModel() {
-    val phoneNumber = MutableLiveData<String?>()
-    val fullName = MutableLiveData<String>()
-    val location = MutableLiveData<String>()
-    val birthDay = MutableLiveData<String>()
-    val profileImage = MutableLiveData<Bitmap?>()
+   private val _phoneNumber = MutableLiveData<String?>()
+    val phoneNumber get() = _phoneNumber
+  private  val _fullName = MutableLiveData<String>()
+    val fullName get() = _fullName
+    private val _location = MutableLiveData<String>()
+    val location get() = _location
+    private val _birthDay = MutableLiveData<String>()
+    val birthDay get() = _birthDay
+  private  val _profileImage = MutableLiveData<Bitmap?>()
+    val profileImage get() = _profileImage
 
     init {
         getBirthDay()
@@ -61,19 +66,19 @@ class ProfileViewModel @Inject constructor(
 
     ///////  <----------- get data from store  -------->  /////////
     private fun getPhoneNumber() = launchWithCatch {
-        phoneNumber.postValue(repo.getPhoneNumber())
+        _phoneNumber.postValue(repo.getPhoneNumber())
     }
 
     fun getFullName() = launchWithCatch {
-        fullName.postValue(repo.getFullName())
+        _fullName.postValue(repo.getFullName())
     }
 
     fun getLocation() = launchWithCatch {
-        location.postValue(repo.getLocation())
+        _location.postValue(repo.getLocation())
     }
 
     fun getBirthDay() = launchWithCatch {
-        birthDay.postValue(repo.getBirthDay()?:"")
+        _birthDay.postValue(repo.getBirthDay()?:"")
     }
 
     ///////  <----------- work with gallery -------->  /////////
@@ -93,9 +98,9 @@ class ProfileViewModel @Inject constructor(
     private fun loadProfileImage() = launchWithCatch {
         val imageString = repo.getImage()
         if (!imageString.isNullOrEmpty()) {
-            profileImage.postValue(decodeImage(imageString.toString()))
+            _profileImage.postValue(decodeImage(imageString.toString()))
         } else {
-            profileImage.postValue(null)
+            _profileImage.postValue(null)
         }
     }
 
